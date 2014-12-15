@@ -961,15 +961,36 @@ letters, etc)</p>
 </div>
 <div class="section" id="id5">
 <h3>Exceptions<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>Improving <tt class="docutils literal"><span class="pre">raw_input</span></tt></p>
+<ul>
+<li><p class="first">Improving raw_input :
+- Create a new file: safe_input.py &#8211; add it to your repo, and submit a pull</p>
+<blockquote>
+<div><p>request. Make sure to make frequent commits with good commit messages.</p>
+</div></blockquote>
+</li>
+<li><p class="first">The raw_input() function can generate two exceptions:
+- EOFError or end-of-file (EOF)
+- KeyboardInterrupt  or canceled input.
+- Create a wrapper function, perhaps safe_input() that returns &#8216;None&#8217; rather</p>
+<blockquote>
+<div><p>than raising these exceptions.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Note:
+- ^C causes a KeyboardInterrupt Error
+- ^D (^Z on Windows) causes an End Of File Error.
+- ^ is the Control character</p>
+</li>
+<li><p class="first">The next step should be done in your mailroom.py file:
+- Update your mailroom.py program to use exceptions (and BAFP) to handle</p>
+<blockquote>
+<div><p>malformed numeric input (and other malformed input)</p>
+</div></blockquote>
 <ul class="simple">
-<li>The <tt class="docutils literal"><span class="pre">raw_input()</span></tt>  function can generate two exceptions: <tt class="docutils literal"><span class="pre">EOFError</span></tt>  or
-<tt class="docutils literal"><span class="pre">KeyboardInterrupt</span></tt>  on end-of-file(EOF) or canceled input.</li>
-<li>Create a wrapper function, perhaps <tt class="docutils literal"><span class="pre">safe_input()</span></tt>  that returns <tt class="docutils literal"><span class="pre">None</span></tt>
-rather rather than raising these exceptions, when the user enters <tt class="docutils literal"><span class="pre">^C</span></tt>  for
-Keyboard Interrupt, or <tt class="docutils literal"><span class="pre">^D</span></tt> (<tt class="docutils literal"><span class="pre">^Z</span></tt>  on Windows) for End Of File.</li>
-<li>Use this wrapper to get input from users in your mailroom program and use
-exceptions (and EAFP) to handle malformed numeric input</li>
+<li>Make sure to have your commit comment reflect that you&#8217;ve added this
+feature</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="paths-and-file-processing">
