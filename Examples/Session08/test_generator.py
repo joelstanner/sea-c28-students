@@ -75,4 +75,3 @@ def test_prime():
     assert g.next() == 17
     assert g.next() == 19
     assert g.next() == 23
-

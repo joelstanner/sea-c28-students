@@ -7,7 +7,7 @@ demonstrates how for interacts with an iterable
 """
 
 
-l = [1,2,3,4,5,]
+l = [1, 2, 3, 4, 5, ]
 
 
 def my_for(an_iterable, func):
@@ -37,14 +37,9 @@ if __name__ == "__main__":
     def print_func(x):
         print x
 
-    l = [1,2,3,4,5,]
+    l = [1, 2, 3, 4, 5, ]
     my_for(l, print_func)
 
-    t = ('a','b','c','d')
+    t = ('a', 'b', 'c', 'd')
 
     my_for(t, print_func)
-
-
-
-
-

@@ -15,14 +15,17 @@ class IterateMe_1(object):
     def __init__(self, stop=5):
         self.current = -1
         self.stop = stop
+
     def __iter__(self):
         return self
+
     def next(self):
         self.current += 1
         if self.current < self.stop:
             return self.current
         else:
             raise StopIteration
+
 
 class IterateMe_2(object):
     """
@@ -34,8 +37,10 @@ class IterateMe_2(object):
     def __init__(self, stop=5):
         self.current = -1
         self.stop = stop
+
     def __iter__(self):
         return self
+
     def next(self):
         self.current += 1
         if self.current < self.stop:
@@ -44,10 +49,8 @@ class IterateMe_2(object):
             raise StopIteration
 
 
-
 if __name__ == "__main__":
 
     print "first version"
     for i in IterateMe_1():
         print i
-
