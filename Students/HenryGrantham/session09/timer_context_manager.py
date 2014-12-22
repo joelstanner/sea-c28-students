@@ -6,25 +6,30 @@ from StringIO import StringIO
 from contextlib import contextmanager
 
 
-class Context(object):
-    """from Doug Hellmann, PyMOTW
-    http://pymotw.com/2/contextlib/#module-contextlib
+class Timer(object):
+    """This is a timer contextmanager to time code execution.
     """
-    def __init__(self, handle_error):
-        print '__init__(%s)' % handle_error
-        self.handle_error = handle_error
+    def __init__(self):
+        start_time = time.time()
+        print '__init__()'
+        self.start_time = time.time()
 
     def __enter__(self):
         print '__enter__()'
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print '__exit__(%s, %s, %s)' % (exc_type, exc_val, exc_tb)
-        return self.handle_error
+        end_time = time.time() - self.start_time
+        print(u"This code took {:f} seconds".format(end_time))
+
+        print('__exit__')
+        return self
 
 
 @contextmanager
 def timer():
+    """This is a timer contextmanager to time code execution.
+    """
     start_time = time.time()
     try:
         yield object()
@@ -49,12 +54,21 @@ def print_encoded(encoding):
         print encoded
 
 if __name__ == "__main__":
-    with timer():
+
+    # This is a test to make sure that the context handler Class works
+    with Timer() as foo:
         for i in range(100000):
             i = i ** 20
         print(u"How long does this time take")
 
-    with timer():
+    # This is a test to make sure that the context handler Decorator works
+    with timer() as t:
+        for i in range(100000):
+            i = i ** 20
+        print(u"How long does this time take")
+
+    # This test make' sure that the exception in the context handler works
+    with timer() as t:
         l = [1, 2, 3]
         i = 0
         while True:
