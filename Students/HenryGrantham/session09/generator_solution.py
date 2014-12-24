@@ -46,14 +46,15 @@ def doubler():
 
 def fib():
     """Generates numbers in a fibonacci sequence: f(n) = f(n-1) + f(n-2)
+
+    f2 represents n - 2 and f1 represents n - 1
     """
-    n = 1
-    m = 0
+    f2 = 0
+    f1 = 1
     while True:
-        sum = n + m
-        m = n
-        n = sum
-        yield m
+        yield f1
+        f2, f1 = (f1, f1 + f2)
+
 
 
 def prime():
