@@ -17,9 +17,11 @@ def intsum():
     i = 0
     sum = 0
     while True:
-        sum = sum + i
-        i += 1
         yield sum
+        i += 1
+        sum = sum + i
+
+ 
 
 
 def intsum2():
