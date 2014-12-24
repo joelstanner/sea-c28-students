@@ -9,6 +9,7 @@ Fibonacci sequence
 Prime numbers
 
 """
+from math import sqrt
 
 
 def intsum():
@@ -49,12 +50,10 @@ def fib():
 
     f2 represents n - 2 and f1 represents n - 1
     """
-    f2 = 0
-    f1 = 1
+    f2, f1 = 0, 1
     while True:
         yield f1
         f2, f1 = (f1, f1 + f2)
-
 
 
 def prime():
@@ -63,8 +62,15 @@ def prime():
     n = 1
     while True:
         n += 1
-        if not [i for i in range(2, n) if n % i == 0]:
-            yield n
+        # This is special case of only even number that is prime
+        if n == 2:
+            yield 2
+        else:
+            # This line rules out all even numbers after 2
+            if not n % 2:
+                # Only has to test up to sqrt of n
+                if [i for i in range(2, int(sqrt(n))) if (n % i)]:
+                    yield n
 
 
 def square():
