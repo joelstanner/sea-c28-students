@@ -5,9 +5,7 @@ def p_wrapper(func):
     """Wraps original output in an HTML 'p' tag
     """
     def wrapped(text):
-        beg_str = u"<p> "
-        end_str = u" </p>"
-        result = u"{}{}{}".format(beg_str, func(text), end_str)
+        result = u"<p> {} </p>".format(func(text))
         return result
     return wrapped
 
@@ -16,5 +14,4 @@ def p_wrapper(func):
 def return_a_string(string):
     """Returns a string
     """
-    print string
     return string
