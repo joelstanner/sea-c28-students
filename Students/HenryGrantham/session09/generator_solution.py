@@ -13,7 +13,7 @@ from math import sqrt
 
 
 def intsum():
-    """Generates numbers that are in the sequence 0 + 1 + 2 + 3 + 4 + 5 +
+    """Generates numbers that are in the sequence 0 + 1 + 3 + 6 + 10 + 15 +
     """
     i = 0
     sum = 0
@@ -21,19 +21,15 @@ def intsum():
         yield sum
         i += 1
         sum = sum + i
-
- 
 
 
 def intsum2():
-    """Generates numbers that are in the sequence 0 + 1 + 2 + 3 + 4 + 5 +
+    """Generates numbers that are in the sequence 0 + 1 + 3 + 6 + 10 + 15 +
     """
-    i = 0
-    sum = 0
+    n = 1
     while True:
-        sum = sum + i
-        i += 1
-        yield sum
+        yield (n * (n - 1)) / 2
+        n += 1
 
 
 def doubler():
@@ -59,18 +55,20 @@ def fib():
 def prime():
     """Generates prime numbers: 2, 3, 5, 7, 11, 13, 17, 19, 23...
     """
-    n = 1
+    n = 2
     while True:
-        n += 1
         # This is special case of only even number that is prime
         if n == 2:
             yield 2
         else:
             # This line rules out all even numbers after 2
-            if not n % 2:
-                # Only has to test up to sqrt of n
-                if [i for i in range(2, int(sqrt(n))) if (n % i)]:
+            if n % 2:
+                # Only has to test up to sqrt of n (then add one for range)
+                if not [i for i in range(3, int(sqrt(n)) + 1) if n % i == 0]:
+                    # print("%i is divisable by %i" % (n, i))
                     yield n
+        n += 1
+
 
 
 def square():
@@ -78,9 +76,8 @@ def square():
     """
     n = 1
     while True:
-        square = n ** 2
+        yield n ** 2
         n += 1
-        yield square
 
 
 def everythirdpowerofthree():
@@ -88,13 +85,12 @@ def everythirdpowerofthree():
     """
     n = 1
     while True:
-        square = n ** 3
+        if n % 3 == 0:
+            yield n ** 3
         n += 1
-        if n % 3 == 1:      
-            yield square
 
 if __name__ == "__main__":
 
-    g = everythirdpowerofthree()
+    g = prime()
     for i in range(10):
         print g.next()
