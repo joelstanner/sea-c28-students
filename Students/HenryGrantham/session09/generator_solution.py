@@ -38,8 +38,8 @@ def doubler():
     """
     i = 1
     while True:
+        yield i
         i *= 2
-        yield i / 2
 
 
 def fib():
