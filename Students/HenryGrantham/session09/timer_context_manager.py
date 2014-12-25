@@ -4,6 +4,7 @@
 # This module contants two timer context managers, one a class and another
 #     a generator function style context managers using a decorator
 
+from __future__ import print_function
 import sys
 import time
 import codecs
@@ -14,17 +15,19 @@ from contextlib import contextmanager
 class Timer(object):
     """This is a timer context manager Class to time code execution.
     """
-    def __init__(self, f=sys.stdout):
+    def __init__(self, f=sys.stdout, handle_error=True):
         self.f = f
         self.start_time = time.time()
+        self.handle_error = handle_error
 
     def __enter__(self):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        print('__exit__(%s, %s, %s)' % (exc_type, exc_val, exc_tb))
         end_time = time.time() - self.start_time
         self.f.write(u"This code took {:f} seconds\n".format(end_time))
-        return self
+        return self.handle_error
 
 
 @contextmanager
@@ -35,7 +38,7 @@ def timer(f=sys.stdout):
     try:
         yield object()
     except Exception as e:
-        print(u"A '%s' error occured." % e)
+        print(u"An error occured: %s" % e)
         raise e
     finally:
         end_time = time.time() - start_time
@@ -80,7 +83,16 @@ if __name__ == "__main__":
     print(u"last two because the timer is writing to the default sys.stdout")
     print(u"so timer output comes out on the screen right away.")
     print(u"\nThis last test makes sure exceptions handler works:")
-    print(u"\n(only tests generator version)")
+    print(u"\n(only tests Class version, generator versino already tested)")
+
+    # # This test make' sure that the exception in the context handler works
+    with Timer() as t:
+        l = range(500)
+        i = 0
+        while True:
+            i += 1
+            l[i] = 1
+        print(u"How long does this time take")
 
     # # This test make' sure that the exception in the context handler works
     with timer() as t:
@@ -90,6 +102,7 @@ if __name__ == "__main__":
             i += 1
             l[i] = 1
         print(u"How long does this time take")
+
 
 
        
