@@ -7,7 +7,6 @@
 from __future__ import print_function
 import sys
 import time
-import codecs
 from StringIO import StringIO
 from contextlib import contextmanager
 
@@ -60,6 +59,7 @@ if __name__ == "__main__":
     print(u"Done processing")
 
     # This is a test to make sure that the context handler Class works
+    # with a STringIO() passsed in
     f = StringIO()
     with Timer(f) as t:
         for i in range(100000):
@@ -70,6 +70,7 @@ if __name__ == "__main__":
     f.close()
 
     # This is a test to make sure that the context handler Decorator works
+    # with a STringIO() passsed in
     f2 = StringIO()
     with timer(f2) as t:
         for i in range(100000):
@@ -86,13 +87,16 @@ if __name__ == "__main__":
     print(u"\n(only tests Class version, generator versino already tested)")
 
     # # This test make' sure that the exception in the context handler works
-    with Timer() as t:
+    f = StringIO()
+    with Timer(f, True) as t:
         l = range(500)
         i = 0
         while True:
             i += 1
             l[i] = 1
         print(u"How long does this time take")
+    print(f.getvalue())
+    f.close()
 
     # # This test make' sure that the exception in the context handler works
     with timer() as t:
