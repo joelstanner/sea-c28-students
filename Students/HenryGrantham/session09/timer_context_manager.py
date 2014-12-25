@@ -23,7 +23,6 @@ class Timer(object):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print('__exit__(%s, %s, %s)' % (exc_type, exc_val, exc_tb))
         end_time = time.time() - self.start_time
         self.f.write(u"This code took {:f} seconds\n".format(end_time))
         return self.handle_error
@@ -84,9 +83,10 @@ if __name__ == "__main__":
     print(u"last two because the timer is writing to the default sys.stdout")
     print(u"so timer output comes out on the screen right away.")
     print(u"\nThis last test makes sure exceptions handler works:")
-    print(u"\n(only tests Class version, generator versino already tested)")
+    print(u"(only tests Class version, generator versino already tested)")
 
-    # # This test make' sure that the exception in the context handler works
+    # This test make' sure that the exception in the context handler works
+    # With True passed in to ignore exceptions
     f = StringIO()
     with Timer(f, True) as t:
         l = range(500)
@@ -94,18 +94,32 @@ if __name__ == "__main__":
         while True:
             i += 1
             l[i] = 1
-        print(u"How long does this time take")
+    print(u"Done Processing")
     print(f.getvalue())
     f.close()
 
-    # # This test make' sure that the exception in the context handler works
-    with timer() as t:
+    # This test make' sure that the exception in the context handler works
+    # With False passed in to bubble up exceptions
+    f = StringIO()
+    with Timer(f, False) as t:
         l = range(500)
         i = 0
         while True:
             i += 1
             l[i] = 1
-        print(u"How long does this time take")
+    print(u"Done Processing")
+    print(f.getvalue())
+    f.close()
+
+    # This test make's sure that the exception in the generatorcontext
+    # handler works. Tried this and it does throw an exception
+    # with timer() as t:
+    #     l = range(500)
+    #     i = 0
+    #     while True:
+    #         i += 1
+    #         l[i] = 1
+    #     print(u"How long does this time take")
 
 
 
