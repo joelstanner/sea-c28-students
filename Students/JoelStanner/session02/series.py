@@ -1,7 +1,14 @@
+MEMO = {0:0, 1:1}
+LUCAS_MEMO = {0:2, 1:1}
+
 def fibonacci(n):
     """Return the nth fibonacci number for input n."""
-    if n == 0: return 0
-    elif n == 1: return 1
-    else: return fibonacci(n-1) + fibonacci(n-2)
+    if not n in MEMO:
+        MEMO[n] = fibonacci(n-1) + fibonacci(n-2)
+    return MEMO[n]
 
-fibonacci(6)
+def lucas(n):
+    """Return the nth lucas number for input n."""
+    if not n in LUCAS_MEMO:
+        LUCAS_MEMO[n] = lucas(n-1) + lucas(n-2)
+    return LUCAS_MEMO[n]
