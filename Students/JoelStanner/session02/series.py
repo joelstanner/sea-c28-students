@@ -1,4 +1,4 @@
-"""Series.py from session01 task2"""
+"""Series.py from session02 task2"""
 
 MEMO = {0: 0, 1: 1}
 LUCAS_MEMO = {0: 2, 1: 1}
