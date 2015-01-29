@@ -16,7 +16,7 @@ Experiment with different lengths for the lookup key. (3 words, 4 words,
 """
 
 
-import random
+import random, string
 
 txt_file = u"sherlock_tester.txt"
 
@@ -35,11 +35,18 @@ def readfile(txt_file):
 def collect_words(text):
     """Strip punctuation from a string."""
 
-    punc = ur'!"#$%&\()*+,./:;<=>?@[\\]^_`{|}~'
+    punc = unicode(string.punctuation)
+    punc = string.punctuation.replace("'", "")  # keep apostropies
+    punc = string.punctuation.replace("-", "")  # keep hyphenated words
+    table = dict([(ord(c), None) for c in punc])
 
     text = text.lower()
-    text = text.strip(punc)
+    text = text.translate(table)
     words = text.split()
+
+    # remove the bare single quotes
+    # " ' " is both a quote and an apostrophe
+    words = [word for word in words if word != "'"]
 
     return words
 
@@ -88,6 +95,3 @@ if __name__ == '__main__':
     final_text = new_story(trigrams_words)
 
     print (final_text)
-
-
-
