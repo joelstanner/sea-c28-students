@@ -62,13 +62,17 @@ def new_story(word_pairs):
 
     new_story = []
     # random number of sentences in a paragraph
-    for i in range(random.randint(1, 10)):
+    for _ in range(random.randint(1, 10)):
         sentence = list(random.choice(word_pairs.keys()))
 
         # random number of words in a sentence
-        for j in range(random.randint(2, 20)):
+        for _ in range(random.randint(2, 20)):
             pair = tuple(sentence[-2:])
-            sentence.append(random.choice(word_pairs[pair]))
+            # key error just ends the sentence:
+            try:
+                sentence.append(random.choice(word_pairs[pair]))
+            except(KeyError):
+                break
         # Capitalize the first word
         sentence[0] = sentence[0].capitalize()
         sentence[-1] += random.choice('?!.')
