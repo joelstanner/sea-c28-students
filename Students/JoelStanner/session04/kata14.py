@@ -64,7 +64,7 @@ def trigram(words):
     return word_pairs
 
 
-def new_story(word_pairs):
+def new_paragraph(word_pairs):
     """Make a new story from the trigrams"""
 
     new_story = []
@@ -92,6 +92,10 @@ def new_story(word_pairs):
 if __name__ == '__main__':
 
     trigrams_words = trigram(collect_words(readfile(txt_file)))
-    final_text = new_story(trigrams_words)
+
+    final_text = ""
+    for _ in range(random.randint(1,10)):
+        final_text += new_paragraph(trigrams_words)
+        final_text += "\n\n"
 
     print (final_text)
