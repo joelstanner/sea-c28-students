@@ -16,6 +16,8 @@ Experiment with different lengths for the lookup key. (3 words, 4 words,
 """
 
 
+import random
+
 txt_file = u"sherlock_tester.txt"
 
 
@@ -53,5 +55,35 @@ def trigram(words):
         word_pairs.setdefault(pair, []).append(follower)
 
     return word_pairs
+
+
+def new_story(word_pairs):
+    """Make a new story from the trigrams"""
+
+    new_story = []
+    # random number of sentences in a paragraph
+    for i in range(random.randint(1, 10)):
+        sentence = list(random.choice(word_pairs.keys()))
+
+        # random number of words in a sentence
+        for j in range(random.randint(2, 20)):
+            pair = tuple(sentence[-2:])
+            sentence.append(random.choice(word_pairs[pair]))
+        # Capitalize the first word
+        sentence[0] = sentence[0].capitalize()
+        sentence[-1] += random.choice('?!.')
+        new_story.extend(sentence)
+
+    new_story = " ".join(new_story)
+
+    return new_story
+
+if __name__ == '__main__':
+
+    trigrams_words = trigram(collect_words(readfile(txt_file)))
+    final_text = new_story(trigrams_words)
+
+    print (final_text)
+
 
 
