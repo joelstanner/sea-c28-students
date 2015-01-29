@@ -15,7 +15,20 @@ Experiment with different lengths for the lookup key. (3 words, 4 words,
 3 letters, etc)
 """
 
+
 txt_file = u"sherlock_tester.txt"
+
+
+def readfile(txt_file):
+    """Read the text file, make a giant string"""
+
+    with open(txt_file, 'r') as in_file:
+        all_words = []
+        for line in in_file:
+            all_words.append(line)
+
+    return u" ".join(all_words)
+
 
 def collect_words(text):
     """Strip punctuation from a string."""
@@ -25,17 +38,20 @@ def collect_words(text):
     text = text.lower()
     text = text.strip(punc)
     words = text.split()
-    
+
     return words
 
 
+def trigram(words):
+    """Make a trigram dict from the words"""
 
-def readfile(txt_file):
-    with open(txt_file, 'r') as in_file:
-        trigram = set()
-        words = []
-        for line in in_file:
-            words = line.split()
-            for word in enumerate(words):
-                trigram.add(words[word[0]:word[0] + 3])
-        print(trigram)
+    word_pairs = {}
+
+    for word in enumerate(words[:-2]):
+        pair = tuple(words[word[0]:word[0]+2])
+        follower = words[word[0]+2]
+        word_pairs.setdefault(pair, []).append(follower)
+
+    return word_pairs
+
+
