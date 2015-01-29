@@ -16,9 +16,10 @@ Experiment with different lengths for the lookup key. (3 words, 4 words,
 """
 
 
-import random, string
+import random
+import string
 
-txt_file = u"sherlock.txt"
+TXT_FILE = u"sherlock.txt"
 
 
 def readfile(txt_file):
@@ -91,10 +92,10 @@ def new_paragraph(word_pairs):
 
 if __name__ == '__main__':
 
-    trigrams_words = trigram(collect_words(readfile(txt_file)))
+    trigrams_words = trigram(collect_words(readfile(TXT_FILE)))
 
     final_text = ""
-    for _ in range(random.randint(1,10)):
+    for _2 in range(random.randint(1, 10)):
         final_text += new_paragraph(trigrams_words)
         final_text += "\n\n"
 
