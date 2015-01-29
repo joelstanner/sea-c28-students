@@ -18,7 +18,7 @@ Experiment with different lengths for the lookup key. (3 words, 4 words,
 
 import random, string
 
-txt_file = u"sherlock_tester.txt"
+txt_file = u"sherlock.txt"
 
 
 def readfile(txt_file):
