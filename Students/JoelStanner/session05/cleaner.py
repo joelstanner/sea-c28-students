@@ -26,17 +26,13 @@ will get filename == "a_file_name"
 
 import sys
 filename = sys.argv[1]
-choice = ""
-newfile = ""
 
-def cleaner(filename, choice):
+
+def cleaner_map(file_to_process):
     """Take a filename and remove leading and trailing whitespace on each line"""
-    with open(filename, "w") as f:
-        for line in f:
-            line = f.readlines()
-            stripped_line = stripper(line)
-            if choice == "n":
-                pass
+    cleaned_file = []
+    with open(file_to_process, "w") as f:
+        cleaned_file.append(map(stripper(f)
 
 
 def option():
@@ -48,7 +44,8 @@ def option():
             newfile = new_file_top + new_file_parts[1]
             return newfile
         elif choice == "O" or "o":
-            return "o"
+            newfile = filename
+            return newfile
         else:
             choice = raw_input("Try again[n/o]? ")
 
@@ -56,3 +53,7 @@ def option():
 def stripper(thing_to_strip):
     """Return a copy of a string with leading and trailing whitespace stripped"""
     return thing_to_strip.strip()
+
+
+if __name__ == '__main__':
+    cleaner_map(option())
