@@ -32,12 +32,13 @@ def cleaner_map(file_to_process):
     """Take a filename and remove leading and trailing whitespace on each line"""
     lines = []
     with open(filename, "r") as old_file:
-        with open(file_to_process, "w") as f:
-            for line in old_file:
-                lines.append(line)
-            cleaned_file = (map(stripper, lines))
-            text = '\n'.join(line for line in cleaned_file)
-            f.write(text)
+        for line in old_file:
+            lines.append(line)
+
+    with open(file_to_process, "w") as f:
+        cleaned_file = (map(stripper, lines))
+        text = '\n'.join(line for line in cleaned_file)
+        f.write(text)
 
 
 def option():
