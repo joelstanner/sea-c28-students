@@ -2,47 +2,32 @@
 # -*- coding: UTF-8 -*-
 
 """
-Write a program that takes a filename and “cleans” the file be removing all the
-leading and trailing whitespace from each line.
-
-Read in the original file and write out a new one, either creating a new file
-or overwriting the existing one.
-
-Give your user the option of which to perform.
-
-Use map() to do the work.
-
-Write a second version using a comprehension.
-
-sys.argv hold the command line arguments the user typed in. If the user types:
-
-$ python the_script a_file_name
-Then:
-
-import sys
-filename = sys.argv[1]
-will get filename == "a_file_name"
+same as cleaner.py, but this uses a list comprehension.
 """
 
 import sys
 filename = sys.argv[1]
 
 
-def cleaner_map(file_to_process):
-    """Take a filename and remove leading and trailing whitespace on each line"""
+def cleaner_listc(file_to_process):
+    """Take a filename and remove leading and trailing whitespace on each
+    line"""
+
     lines = []
     with open(filename, "r") as old_file:
         for line in old_file:
             lines.append(line)
 
     with open(file_to_process, "w") as f:
-        cleaned_file = map(stripper, lines)
+        cleaned_file = [stripper(line) for line in lines]
         text = '\n'.join(line for line in cleaned_file)
         text += '\n'  # end file with newline
         f.write(text)
 
 
 def option():
+    """Ask user for a choice. New file or overwrite file?"""
+
     print("New file will make a copy with '_new' in the filename.")
     while True:
         choice = raw_input("New file or overwrite existing[n/o]? ")
@@ -60,9 +45,11 @@ def option():
 
 
 def stripper(thing_to_strip):
-    """Return a copy of a string with leading and trailing whitespace stripped"""
+    """Return a copy of a string with leading and trailing whitespace
+    stripped"""
+
     return thing_to_strip.strip()
 
 
 if __name__ == '__main__':
-    cleaner_map(option())
+    cleaner_listc(option())
