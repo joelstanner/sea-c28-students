@@ -36,7 +36,7 @@ def cleaner_map(file_to_process):
             lines.append(line)
 
     with open(file_to_process, "w") as f:
-        cleaned_file = (map(stripper, lines))
+        cleaned_file = map(stripper, lines)
         text = '\n'.join(line for line in cleaned_file)
         f.write(text)
 
@@ -53,7 +53,7 @@ def option():
             newfile = filename
             return newfile
         else:
-            choice = raw_input("Try again[n/o]? ")
+            print("only 'n' or 'o' works here")
 
 
 def stripper(thing_to_strip):
