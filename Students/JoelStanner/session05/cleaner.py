@@ -43,8 +43,8 @@ def cleaner_map(file_to_process):
 
 
 def option():
+    print("New file will make a copy with '_new' in the filename.")
     while True:
-        print("New file will make a copy with '_new' in the filename.")
         choice = raw_input("New file or overwrite existing[n/o]? ")
         if choice == "N" or choice == "n":
             # add '_new.' to filename, keep any remaining filename parts.
