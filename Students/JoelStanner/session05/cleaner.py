@@ -38,13 +38,16 @@ def cleaner_map(file_to_process):
     with open(file_to_process, "w") as f:
         cleaned_file = map(stripper, lines)
         text = '\n'.join(line for line in cleaned_file)
+        text += '\n'  # end file with newline
         f.write(text)
 
 
 def option():
     while True:
+        print("New file will make a copy with '_new' in the filename.")
         choice = raw_input("New file or overwrite existing[n/o]? ")
         if choice == "N" or choice == "n":
+            # add '_new.' to filename, keep any remaining filename parts.
             new_file_parts = filename.split('.',1)
             new_file_top = new_file_parts[0] + "_new."
             newfile = new_file_top + new_file_parts[1]
@@ -63,3 +66,4 @@ def stripper(thing_to_strip):
 
 if __name__ == '__main__':
     cleaner_map(option())
+
