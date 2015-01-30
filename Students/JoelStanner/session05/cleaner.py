@@ -43,12 +43,12 @@ def cleaner_map(file_to_process):
 def option():
     while True:
         choice = raw_input("New file or overwrite existing[n/o]? ")
-        if choice == "N" or "n":
+        if choice == "N" or choice == "n":
             new_file_parts = filename.split('.',1)
             new_file_top = new_file_parts[0] + "_new."
             newfile = new_file_top + new_file_parts[1]
             return newfile
-        elif choice == "O" or "o":
+        elif choice == "O" or choice == "o":
             newfile = filename
             return newfile
         else:
