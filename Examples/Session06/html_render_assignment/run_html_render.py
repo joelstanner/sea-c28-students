@@ -15,22 +15,22 @@ import html_render as hr
 
 ## writing the file out:
 def render(page, filename):
-   """
-   render the tree of elements
+    """
+    render the tree of elements
 
-   This uses cSstringIO to renderto memory, then dump to console and
-   write to file -- very handy!
-   """
+    This uses cSstringIO to renderto memory, then dump to console and
+    write to file -- very handy!
+    """
 
-   f = cStringIO.StringIO()
-   page.render(f)
+    f = cStringIO.StringIO()
+    page.render(f)
 
-   f.reset()
+    f.reset()
 
-   print f.read()
+    print f.read()
 
-   f.reset()
-   codecs.open(filename, 'w', encoding="utf-8").write( f.read() )
+    f.reset()
+    codecs.open(filename, 'w', encoding="utf-8").write(f.read())
 
 
 ## Step 1

@@ -5,11 +5,12 @@
 class Element(object):
     """Base element of HTML"""
 
-    def __init__(self, tag_name="HTML", ind=0, content=""):
-        indent = 0
+    indent = 0
+
+    def __init__(self, tag_name="", ind=0, content=""):
 
         self.tag_name = tag_name
-        self.ind = ind + indent
+        self.indent = ind
         self.content = content
 
     def append(self, content):
@@ -19,6 +20,7 @@ class Element(object):
 
     def render(self, file_out, ind=""):
         """Render tag and string in the content"""
+        print("<", self.tag_name, ">")
         self.file_out = file_out
         self.ind = ind
         return
