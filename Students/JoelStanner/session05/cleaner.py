@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-Write a program that takes a filename and “cleans” the file be removing all the
+Write a program that takes a filename and "cleans" the file be removing all the
 leading and trailing whitespace from each line.
 
 Read in the original file and write out a new one, either creating a new file
