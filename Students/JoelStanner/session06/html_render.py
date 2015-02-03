@@ -6,10 +6,10 @@ class Element(object):
     """Base element of HTML"""
 
     tag_name = 'html'
-    indent_lvl = 1
     content = []
+    indent = 1
 
-    def __init__(self, content=""):
+    def __init__(self, content=None):
         self.content.append(content)
 
     def append(self, content):
@@ -19,17 +19,19 @@ class Element(object):
 
     def render(self, file_out, ind="  "):
         """Render tag and string in the content. file_out is a file object"""
-        file_out.write('<' + self.tag_name + '>\n')
         for line in self.content:
-            file_out.write(ind * self.indent_lvl + line + "\n")
-            if self.indent_lvl > 1:
-                self.render(file_out)
-        file_out.write('<' + self.tag_name + '/>\n')
+            if isinstance(line, Element):
+                ind += ind
+                self.render(file_out, ind)
+            file_out.write('<' + self.tag_name + '>\n')
+            if line:
+                file_out.write(ind + line + "\n")
+            file_out.write('<' + self.tag_name + '/>\n')
         return
 
 
 class Html(Element):
-    """Body element"""
+    """html element"""
 
     tag_name = 'html'
 
